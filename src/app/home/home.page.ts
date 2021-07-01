@@ -13,7 +13,7 @@ export class HomePage {
       tags:[]
     },
     {
-      img: 'assets/imgs/img.jpg',
+      img: 'assets/imgs/img-2.jpg',
       tags:[]
     }
   ];
