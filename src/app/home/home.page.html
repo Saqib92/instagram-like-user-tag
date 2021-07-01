@@ -11,24 +11,21 @@
 
     <ion-slides pager="true">
       <ion-slide *ngFor="let im of imgs; let i = index;" style="position: relative;">
-        
-        <img [src]="im.img" (click)="imgClick($event, i)"/>
+
+        <img [src]="im.img" (click)="imgClick($event, i)"/>  
         
         <ng-container *ngIf="im.tags.length != 0">
+          
           <ng-container *ngFor="let p of im.tags; let ti = index">
-
             <div style="position: absolute;"  [ngStyle]="{'top': (p.y+'px'), 'left': (p.x+'px')}">
               <ion-icon name="close" class="close-icon" (click)="removeTagbox(ti, i)"></ion-icon>
-              <ion-input type="text" placeholder="Whats this?" class="input"></ion-input>
+              <ion-input type="text" placeholder="Whats this?" class="input" [(ngModel)]="p.input" ></ion-input>
             </div>
-              
-           
-          </ng-container>
-            
+          </ng-container>            
+        
         </ng-container>
-
       </ion-slide>
-    
+
     </ion-slides>
 
 

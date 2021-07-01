@@ -25,7 +25,7 @@ export class HomePage {
     console.log(event, i);
     let x = event.layerX;
     let y = event.layerY;
-    this.imgs[i].tags.push({x: x, y: y})
+    this.imgs[i].tags.push({x: x, y: y, input:''})
     
     console.log(this.imgs);
   }
