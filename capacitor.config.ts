@@ -1,15 +1,10 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.saqib.instatag',
   appName: 'instatag',
   webDir: 'www',
-  bundledWebRuntime: false,
-  plugins:{
-    PushNotifications:{
-      presentationOptions:['badge', 'sound', 'alert']
-    }
-  }
+  bundledWebRuntime: false
 };
 
 export default config;

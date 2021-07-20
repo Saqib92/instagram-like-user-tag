@@ -1,4 +1,4 @@
-package com.example.app;
+package com.saqib.instatag;
 
 import com.getcapacitor.BridgeActivity;
 
