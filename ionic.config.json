@@ -1,5 +1,7 @@
 {
   "name": "instatag",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

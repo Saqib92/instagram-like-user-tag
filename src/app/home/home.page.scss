@@ -1,15 +1,6 @@
-.container{
-  max-width: 500px;
-  margin: 0 auto;
-}
-
 ion-slides{
+  padding-bottom:30px;
   ion-slide{
-    img{
-      height: 400px;
-      object-fit: fill;
-    } 
-
     .close-icon{
       position: absolute;
       color: #fff;
@@ -27,6 +18,15 @@ ion-slides{
       color: #fff;
       text-align: left;
       border-radius: 10px;
+    }
+
+    .userList{
+      background: #0000005e;
+      color: #fff;
+      text-align: left;
+      padding: 5px;
+      border-radius: 10px;
+      font-size: 12px;
     }
   }
 }

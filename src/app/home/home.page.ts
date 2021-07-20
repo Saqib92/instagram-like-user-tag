@@ -7,7 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class HomePage {
-
+  sliderConfig = {
+    autoHeight: true
+  };
+  
   imgs = [
     {
       img: 'assets/imgs/img.jpg',
@@ -19,28 +22,24 @@ export class HomePage {
     }
   ];
 
+  users = [
+    {name:'Saqib Khan'},
+    {name:'Instagram'},
+    {name:'Tag Feature'},
+    {name:'With Love From Pakistan'},
+  ]
+
   constructor() { }
 
-  // Old Function but issue on 2nd slide and responsive image
-
-  /*imgClick(event, i){
-    console.log(event, i);
-    let x = event.layerX;
-    let y = event.layerY;
-    this.imgs[i].tags.push({x: x, y: y, input:''})
-    console.log(this.imgs);
-  }*/
-
-  // New Function works with 2 slide but have position issues
   imgClick(event, i) {
     let offsetLeft = 0;
     let offsetTop = 0;
     let el = event.srcElement;
     offsetLeft += el.offsetLeft;
     offsetTop += el.offsetTop;
-    var relativeX = event.layerX - offsetLeft;
-    var relativeY = event.layerY - offsetTop;
-    this.imgs[i].tags.push({ x: relativeX, y: relativeY, input: '' });
+    var x = ((((event.offsetX - 11) - offsetLeft) / el.offsetWidth * 100));
+    var y = ((((event.offsetY - 11) - offsetTop) / el.offsetHeight * 100))
+    this.imgs[i].tags.push({ x: x, y: y, input: '' });
   }
 
   removeTagbox(ti, i) {
