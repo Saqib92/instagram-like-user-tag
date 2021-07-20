@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef  } from '@angular/core';
+import { Platform, ActionSheetController } from '@ionic/angular'
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -10,26 +12,23 @@ export class HomePage {
   sliderConfig = {
     autoHeight: true
   };
-  
-  imgs = [
-    {
-      img: 'assets/imgs/img.jpg',
-      tags: []
-    },
-    {
-      img: 'assets/imgs/img-2.jpg',
-      tags: []
-    }
-  ];
+
+  imgs = [];
 
   users = [
     {name:'Saqib Khan'},
     {name:'Instagram'},
     {name:'Tag Feature'},
     {name:'With Love From Pakistan'},
-  ]
+  ];
 
-  constructor() { }
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+
+
+  constructor(
+    private plt: Platform,
+    private actionSheetCtrl: ActionSheetController
+  ) { }
 
   imgClick(event, i) {
     let offsetLeft = 0;
@@ -44,6 +43,49 @@ export class HomePage {
 
   removeTagbox(ti, i) {
     this.imgs[i].tags.splice(ti, 1)
+  }
+
+  async selectImageSource() {
+    const buttons = [
+      {
+        text: 'Take Photo',
+        icon: 'camera',
+        handler: () => {
+          this.addImage(CameraSource.Camera);
+        }
+      },
+      {
+        text: 'Choose From Photos Photo',
+        icon: 'image',
+        handler: () => {
+          this.addImage(CameraSource.Photos);
+        }
+      }
+    ];
+ 
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Select Image Source',
+      buttons
+    });
+    await actionSheet.present();
+  }
+
+  async addImage(source: CameraSource) {
+    const image = await Camera.getPhoto({
+      quality: 60,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source
+    });
+ 
+    console.log(image)
+
+    this.imgs.push({
+      img: image.dataUrl,
+      tags: []
+    })
+ 
+    
   }
 
 }

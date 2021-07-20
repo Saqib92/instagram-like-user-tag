@@ -8,8 +8,8 @@
 
 <ion-content [fullscreen]="true">
   <div class="container">
-
-    <ion-slides pager="true" [options]="sliderConfig">
+    <p *ngIf="imgs.length == 0" style="text-align: center;">Please Upload Images</p>
+    <ion-slides pager="true" [options]="sliderConfig" *ngIf="imgs.length != 0">
       <ion-slide *ngFor="let im of imgs; let i = index;" style="position: relative;">
 
         <img [src]="im.img" (click)="imgClick($event, i)" />
@@ -20,7 +20,7 @@
               <ion-icon name="close" class="close-icon" (click)="removeTagbox(ti, i)"></ion-icon>
               <ion-input type="text" placeholder="Whats this?" class="input" [(ngModel)]="p.input"></ion-input>
 
-              <div *ngIf="p.input != ''" class="userList">
+              <div *ngIf="p.input == ''" class="userList">
                 <p *ngFor="let u of users" (click)="p.input = u.name">
                   {{u?.name}}
                 </p>
@@ -35,7 +35,18 @@
     </ion-slides>
 
 
-
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <input
+        type="file"
+        #fileInput
+        (change)="uploadFile($event)"
+        hidden="true"
+        accept="image/*"
+      />
+      <ion-fab-button (click)="selectImageSource()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </div>
 
 </ion-content>
